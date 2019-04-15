@@ -1,0 +1,39 @@
+plugins {
+	id 'org.springframework.boot' version '2.1.4.RELEASE'
+	id 'java'
+}
+
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.shyam'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+ext {
+	set('azureVersion', '2.1.2')
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	//implementation 'com.microsoft.azure:azure-storage-spring-boot-starter'
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation 'com.microsoft.azure:azure-storage:4.0.0'
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "com.microsoft.azure:azure-spring-boot-bom:${azureVersion}"
+	}
+}
