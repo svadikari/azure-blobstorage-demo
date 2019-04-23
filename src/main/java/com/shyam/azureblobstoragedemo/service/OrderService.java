@@ -1,9 +1,11 @@
 package com.shyam.azureblobstoragedemo.service;
 
-import com.shyam.azureblobstoragedemo.model.Order;
+import com.shyam.azureblobstoragedemo.model.AuditEvent;
 import com.shyam.azureblobstoragedemo.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @author SVadikari on 4/12/19
@@ -12,11 +14,16 @@ import org.springframework.stereotype.Service;
 public class OrderService {
     @Autowired
     private OrderRepository orderRepository;
-    public void saveOrder(Order order) {
-        orderRepository.saveOrder(order);
+
+    public void saveOrder(AuditEvent auditEvent) {
+        orderRepository.saveOrder(auditEvent);
     }
 
-    public Order readOrder(final String orderId) {
-        return orderRepository.getOrder(orderId);
+    public List<AuditEvent> readOrder(final String orderId) {
+        return orderRepository.getAuditOrderDetails(orderId);
+    }
+
+    public Boolean deleteOrderAudit(final String orderId) {
+        return orderRepository.deleteOrderAuditDetails(orderId);
     }
 }
