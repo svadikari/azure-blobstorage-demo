@@ -25,6 +25,7 @@ ext {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'com.microsoft.azure:azure-keyvault-secrets-spring-boot-starter'
 	//implementation 'com.microsoft.azure:azure-storage-spring-boot-starter'
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
