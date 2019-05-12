@@ -1,6 +1,5 @@
 package com.shyam.azureblobstoragedemo.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import java.math.BigDecimal;

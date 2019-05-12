@@ -1,7 +1,6 @@
 package com.shyam.azureblobstoragedemo.controller;
 
 import com.shyam.azureblobstoragedemo.model.AuditEvent;
-import com.shyam.azureblobstoragedemo.model.Order;
 import com.shyam.azureblobstoragedemo.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -26,12 +25,12 @@ public class OrderController {
     private OrderService orderService;
 
     @GetMapping("/{orderId}")
-    public List<AuditEvent> orderAuditDetails(@PathVariable String orderId){
+    public List<AuditEvent> orderAuditDetails(@PathVariable String orderId) {
         return orderService.readOrder(orderId);
     }
 
     @PostMapping
-    public ResponseEntity orderAudit(@RequestBody AuditEvent auditEvent){
+    public ResponseEntity orderAudit(@RequestBody AuditEvent auditEvent) {
         orderService.saveOrder(auditEvent);
         return ResponseEntity.ok().build();
     }

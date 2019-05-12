@@ -46,16 +46,10 @@ public class PersistentConfiguration {
     public CloudBlobContainer getContainer() {
         CloudBlobContainer container = null;
         try {
-            String storageConnectionString = "DefaultEndpointsProtocol=https;AccountName="
-                    + storageAccountName + ";AccountKey=" + storageAccountKey;
-            CloudStorageAccount storageAccount = null;
-            storageAccount = CloudStorageAccount.parse(storageConnectionString);
-            CloudBlobClient blobClient = storageAccount.createCloudBlobClient();
-            container = blobClient.getContainerReference(storageContainerName);
+
+            container = getCloudBlobClient().getContainerReference(storageContainerName);
             container.createIfNotExists();
         } catch (URISyntaxException e) {
-            e.printStackTrace();
-        } catch (InvalidKeyException e) {
             e.printStackTrace();
         } catch (StorageException e) {
             e.printStackTrace();
@@ -63,4 +57,18 @@ public class PersistentConfiguration {
         return container;
     }
 
+    public @Bean
+    CloudBlobClient getCloudBlobClient() {
+        String storageConnectionString = "DefaultEndpointsProtocol=https;AccountName="
+                + storageAccountName + ";AccountKey=" + storageAccountKey;
+        CloudStorageAccount storageAccount = null;
+        try {
+            storageAccount = CloudStorageAccount.parse(storageConnectionString);
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        } catch (InvalidKeyException e) {
+            e.printStackTrace();
+        }
+        return storageAccount.createCloudBlobClient();
+    }
 }

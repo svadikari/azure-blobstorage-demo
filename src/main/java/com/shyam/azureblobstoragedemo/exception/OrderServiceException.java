@@ -1,6 +1,6 @@
 package com.shyam.azureblobstoragedemo.exception;
 
-public class OrderServiceException extends RuntimeException{
+public class OrderServiceException extends RuntimeException {
 
     public OrderServiceException(Throwable throwable) {
         super(throwable);
